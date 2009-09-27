@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  url: http://www.ingdirect.com
+  estimated_duration: 15
+  name: Do banking
+
+two:
+  url: http://www.google.com 
+  estimated_duration: 30
+  name: Search shit
+
+three: 
+  url: http://www.engineyard.com
+  estimated_duration: 20 
+  name: Make small hosting change

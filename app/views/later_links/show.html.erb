@@ -1,0 +1,18 @@
+<p>
+  <b>Url:</b>
+  <%=h @later_link.url %>
+</p>
+
+<p>
+  <b>Estimated duration:</b>
+  <%=h @later_link.estimated_duration %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @later_link.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_later_link_path(@later_link) %> |
+<%= link_to 'Back', later_links_path %>
