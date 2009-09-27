@@ -86,9 +86,8 @@ class LaterLinksController < ApplicationController
   def largest
     puts "largest called"
     @max_time = params[:max_time]
-    cond = ['estimated_duration <= ?', @max_time] if @max_time
-    @later_link = LaterLink.find(:last, :order => :estimated_duration,
-                                 :conditions => cond)
+    @later_link = LaterLink.find_next_unfinished(@max_time)
+
     flash[:link] = @later_link
     flash[:max_time] = @max_time
     
@@ -106,11 +105,15 @@ class LaterLinksController < ApplicationController
 
   def remove_largest_and_next_largest
     # This has to be assigned to a local, or there will be problems in the redirect
-    # as flash[:max_time] will be cleared
-    max_time = flash[:max_time]
-    @later_link = flash[:link]
-    @later_link.destroy
-    flash[:link] = nil
+    # as flash[:max_time] will be cleared  
+    if flash[:link]
+      @later_link = flash[:link]
+      @later_link.finished = true
+      @later_link.save
+
+      flash[:link] = nil
+    end
+    
     if !flash[:max_time]
       redirect_to :action => 'largest' 
     else
