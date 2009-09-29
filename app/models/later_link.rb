@@ -3,13 +3,7 @@ class LaterLink < ActiveRecord::Base
   validates_format_of :url, :with => /^(http(s)?|ftp):\/\//
   validates_presence_of :name
   validates_presence_of :estimated_duration
-  validate :duration_greater_than_zero
-  
-  def duration_greater_than_zero
-    if !(self.estimated_duration && self.estimated_duration > 0)
-      errors.add(:estimated_duration, "Task duration must be greater than 0 minutes")
-    end
-  end
+  validates_numericality_of :estimated_duration, :greater_than => 0  
 
   def self.find_largest_next_unfinished(time_limit = nil)
     if time_limit
