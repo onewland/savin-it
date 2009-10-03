@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :users
+
   map.connect 'later_links/largest/:max_time', :controller => 'later_links', :action => 'largest'
   map.connect 'later_links/largest', :controller => 'later_links', :action => 'largest'
   map.connect 'later_links/remove_largest_and_next_largest', :controller => 'later_links', :action => 'remove_largest_and_next_largest'
