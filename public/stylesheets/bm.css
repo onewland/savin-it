@@ -1,0 +1,17 @@
+/*
+ * I'm looking like a star, bitch.
+ * When you see me, make a wish.
+ */
+span#mm {
+    color: #660000;
+    font-weight: bold;
+}
+
+span#ss {
+    color: #333333;
+    font-weight: lighter;
+}
+
+div#timer p {
+    text-align: right;
+}

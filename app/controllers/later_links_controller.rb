@@ -27,7 +27,7 @@ class LaterLinksController < ApplicationController
     @later_link = LaterLink.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.xml  { render :xml => @later_link }
     end
   end
