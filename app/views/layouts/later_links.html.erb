@@ -12,7 +12,7 @@
 <script>
     $(function() {
         var time_running = true;
-        var total_time = 300; // in seconds
+        var total_time = <%= (@est_dur || 5) * 60 %>; // in seconds
 
         function formatToTwoDigits(i)
         {
@@ -93,9 +93,6 @@
 <% else %>
     <div id="nag">You should <%= link_to 'log in', :controller => 'user_sessions', :action=> 'new' %> or create a <%= link_to 'new account', :controller => 'users', :action => 'new' %>. <a class="hidenag" href="#">Don't bother me with this shit!</a></div>
 <% end %>
-<div id="timer">
-    <span id="mm"></span>-<span id="ss"></span>-<a id="add5" href="#">Add 5 minutes</a>-<a id="sub5" href="#">Subtract 5 minutes</a>-<a id="stopit" href="#">Stop It!</a>
-</div>
 
 <div id="the_rest">
 <%= yield %>

@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   helper_method :current_user
 
+  def login_required
+    if !current_user
+      flash[:notice] = 'You have to create an account to do that, dawg.'
+      session[:post_login_redirect] = request.referer
+      redirect_to :controller => 'user_sessions', :action=> 'new'
+    end
+  end
+
   private
   def current_user_session
     return @current_user_session if defined?(@current_user_session)

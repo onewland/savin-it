@@ -1,0 +1,32 @@
+%html
+  %head
+    = stylesheet_link_tag 'bm'
+  %body
+    %h1 Create New Account
+    - if flash[:notice]
+      %p.flash{:style => 'background-color: #eeeeee;'}
+        = flash[:notice]
+
+    .newAccount
+      - form_for @user do |form|
+        - if form.error_messages
+          %p
+            = form.error_messages
+        %ol.formList
+          %li
+            = form.label :email, "Email"
+            %br
+            = form.text_field :email
+          %li
+            = form.label :password, "Password"
+            %br
+            = form.password_field :password
+          %li
+            = form.label :password_confirmation, "Password confirmation"
+            %br
+            = form.password_field :password_confirmation
+          %li
+            = form.submit "Submit"
+            %p
+
+    = link_to 'Log in', :controller => 'user_sessions', :action=> 'new'

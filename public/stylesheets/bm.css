@@ -15,3 +15,7 @@ span#ss {
 div#timer p {
     text-align: right;
 }
+
+ol.formList {
+    list-style-type: none;
+}

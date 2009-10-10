@@ -1,11 +1,14 @@
 class LaterLinksController < ApplicationController
+  before_filter :login_required
+
+  @est_dur = 5
   # GET /later_links
   # GET /later_links.xml
   def index
-    @later_links = LaterLink.all
+    @later_links = current_user.later_links
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.xml  { render :xml => @later_links }
     end
   end
@@ -41,6 +44,8 @@ class LaterLinksController < ApplicationController
   # POST /later_links.xml
   def create
     @later_link = LaterLink.new(params[:later_link])
+    @later_link.user = current_user
+    @later_link.finished = false
 
     respond_to do |format|
       if @later_link.save
@@ -84,15 +89,15 @@ class LaterLinksController < ApplicationController
   end
 
   def largest
-    puts "largest called"
     @max_time = params[:max_time]
-    @later_link = LaterLink.find_largest_next_unfinished(@max_time)
+    @later_link = current_user.find_largest_next_unfinished_link_task(@max_time)
 
     flash[:link] = @later_link
     flash[:max_time] = @max_time
     
     if @later_link
-      @title = @later_link.name 
+      @title = @later_link.name
+      @est_dur = @later_link.estimated_duration
       respond_to do |format|
         format.html { render :action => "largest" }
       end

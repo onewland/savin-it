@@ -1,13 +1,24 @@
-%h1 Login
+%html
+  %head
+    %title Savin It! Login
+    = stylesheet_link_tag 'bm'
+  %body
+    %h1 Login
 
-- form_for @user_session do |form|
-  = form.error_messages
-  %ol.formList
-    %li
-      = form.label :email, "E-mail"
-      = form.text_field :email
-    %li
-      = form.label :password, "Password"
-      = form.password_field :password
-    %li
-      = form.submit "Submit"
+    .login
+      - form_for @user_session do |form|
+        = form.error_messages
+        %ol.formList
+          %li
+            = form.label :email, "E-mail"
+            %br
+            = form.text_field :email
+          %li
+            = form.label :password, "Password"
+            %br
+            = form.password_field :password
+          %li
+            = form.submit "Submit"
+
+    %p
+      = link_to 'Create an account', :controller => 'users', :action=> 'new'

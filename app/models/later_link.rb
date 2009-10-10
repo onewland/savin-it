@@ -1,5 +1,6 @@
 class LaterLink < ActiveRecord::Base
   belongs_to :user
+  attr_accessible :url, :name, :estimated_duration, :finished
 
   validates_presence_of :url
   validates_format_of :url, :with => /^(http(s)?|ftp):\/\//

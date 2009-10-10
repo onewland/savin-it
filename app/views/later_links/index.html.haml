@@ -1,0 +1,29 @@
+%h1 Listing later_links
+
+%table
+  %tr
+    %th Url
+    %th Estimated duration
+    %th Name
+    %th Finished
+
+  - @later_links.each do |later_link|
+    %tr
+      %td
+        =h later_link.url
+      %td
+        =h later_link.estimated_duration
+      %td
+        =h later_link.name
+      %td
+        =h later_link.finished
+      %td
+        =link_to 'Show', later_link
+      %td
+        =link_to 'Edit', edit_later_link_path(later_link)
+      %td
+        =link_to 'Destroy', later_link, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New later_link', new_later_link_path
